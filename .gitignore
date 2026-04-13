@@ -162,7 +162,6 @@ output/
 .claude/settings.local.json
 
 # Generated types and build outputs (Claude Code specific)
-plugins/codex/.generated/
 plugins/qwen/.generated/
 plugins/gemini/.generated/
 
