@@ -13,11 +13,11 @@
     "types": ["node"]
   },
   "include": [
-    "plugins/codex/scripts/lib/app-server.mjs",
-    "plugins/codex/scripts/lib/codex.mjs",
-    "plugins/codex/scripts/lib/fs.mjs",
-    "plugins/codex/scripts/lib/process.mjs",
-    "plugins/codex/scripts/lib/app-server-protocol.d.ts",
-    "plugins/codex/.generated/app-server-types/**/*.ts"
+    "plugins/qwen/scripts/lib/acp-client.mjs",
+    "plugins/qwen/scripts/lib/acp-lifecycle.mjs",
+    "plugins/qwen/scripts/lib/qwen.mjs",
+    "plugins/qwen/scripts/lib/fs.mjs",
+    "plugins/qwen/scripts/lib/process.mjs",
+    "plugins/qwen/scripts/lib/acp-protocol.d.ts"
   ]
 }
