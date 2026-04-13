@@ -3,7 +3,7 @@ import path from "node:path";
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { collectReviewContext, resolveReviewTarget } from "../plugins/codex/scripts/lib/git.mjs";
+import { collectReviewContext, resolveReviewTarget } from "../plugins/qwen/scripts/lib/git.mjs";
 import { initGitRepo, makeTempDir, run } from "./helpers.mjs";
 
 test("resolveReviewTarget prefers working tree when repo is dirty", () => {
@@ -103,7 +103,7 @@ test("collectReviewContext skips untracked directories in working tree review", 
   assert.match(context.content, /### \.claude\/worktrees\/agent-test\/\n\(skipped: directory\)/);
 });
 
-test("collectReviewContext skips broken untracked symlinks instead of crashing", () => {
+test("collectReviewContext skips broken untracked symlinks instead of crashing", { skip: process.platform === "win32" }, () => {
   const cwd = makeTempDir();
   initGitRepo(cwd);
   fs.writeFileSync(path.join(cwd, "app.js"), "console.log('v1');\n");

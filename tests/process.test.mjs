@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { terminateProcessTree } from "../plugins/codex/scripts/lib/process.mjs";
+import { terminateProcessTree } from "../plugins/qwen/scripts/lib/process.mjs";
 
 test("terminateProcessTree uses taskkill on Windows", () => {
   let captured = null;
@@ -41,7 +41,7 @@ test("terminateProcessTree treats missing Windows processes as already stopped",
         args,
         status: 128,
         signal: null,
-        stdout: "ERROR: The process \"1234\" not found.",
+        stdout: 'ERROR: The process "1234" not found.',
         stderr: "",
         error: null
       };
@@ -52,4 +52,11 @@ test("terminateProcessTree treats missing Windows processes as already stopped",
   assert.equal(outcome.method, "taskkill");
   assert.equal(outcome.result.status, 128);
   assert.match(outcome.result.stdout, /not found/i);
+});
+
+test("terminateProcessTree skips non-finite pids", () => {
+  const outcome = terminateProcessTree(Number.NaN, { platform: "linux" });
+  assert.equal(outcome.attempted, false);
+  assert.equal(outcome.delivered, false);
+  assert.equal(outcome.method, null);
 });

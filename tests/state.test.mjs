@@ -5,7 +5,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { makeTempDir } from "./helpers.mjs";
-import { resolveJobFile, resolveJobLogFile, resolveStateDir, resolveStateFile, saveState } from "../plugins/codex/scripts/lib/state.mjs";
+import {
+  resolveJobFile,
+  resolveJobLogFile,
+  resolveStateDir,
+  resolveStateFile,
+  saveState
+} from "../plugins/qwen/scripts/lib/state.mjs";
 
 test("resolveStateDir uses a temp-backed per-workspace directory", () => {
   const workspace = makeTempDir();
@@ -14,6 +20,21 @@ test("resolveStateDir uses a temp-backed per-workspace directory", () => {
   assert.equal(stateDir.startsWith(os.tmpdir()), true);
   assert.match(path.basename(stateDir), /.+-[a-f0-9]{16}$/);
   assert.match(stateDir, new RegExp(`^${os.tmpdir().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+});
+
+test("resolveStateDir includes qwen-companion in the state root path", () => {
+  const workspace = makeTempDir();
+  const previousPluginDataDir = process.env.CLAUDE_PLUGIN_DATA;
+  delete process.env.CLAUDE_PLUGIN_DATA;
+
+  try {
+    const stateDir = resolveStateDir(workspace);
+    assert.match(stateDir, /qwen-companion/);
+  } finally {
+    if (previousPluginDataDir != null) {
+      process.env.CLAUDE_PLUGIN_DATA = previousPluginDataDir;
+    }
+  }
 });
 
 test("resolveStateDir uses CLAUDE_PLUGIN_DATA when it is provided", () => {

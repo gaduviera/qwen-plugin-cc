@@ -13,6 +13,19 @@ const PLUGIN_LIB_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SCHEMAS_DIR = path.resolve(PLUGIN_LIB_DIR, "..", "..", "schemas");
 const REVIEW_SCHEMA_PATH = path.join(SCHEMAS_DIR, "review-output.schema.json");
 
+/**
+ * Return a lightweight runtime status object for the status report header.
+ * @param {object} [env]
+ * @returns {{ label: string }}
+ */
+export function getSessionRuntimeStatus(env = process.env) {
+  const hasApiKey = Boolean(env?.DASHSCOPE_API_KEY);
+  if (hasApiKey) {
+    return { label: "qwen (API key)" };
+  }
+  return { label: "qwen (OAuth)" };
+}
+
 export async function getQwenAvailability() {
   const available = binaryAvailable("qwen");
   if (!available) {

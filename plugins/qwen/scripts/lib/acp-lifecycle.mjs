@@ -42,6 +42,8 @@ export async function spawnAcpClient(opts = {}) {
     cwd,
     env,
     stdio: ["pipe", "pipe", "inherit"],
+    shell: process.platform === "win32",
+    windowsHide: true,
   });
 
   const client = new AcpClient(proc);
