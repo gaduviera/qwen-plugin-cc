@@ -1,0 +1,14 @@
+{
+  "": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "code": { "type": "string" },
+    "message": { "type": "string" },
+    "model": { "type": "string" },
+    "suggestions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["code", "message"]
+}
