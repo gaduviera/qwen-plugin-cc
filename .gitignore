@@ -70,7 +70,8 @@ web_modules/
 
 # dotenv environment variable files
 .env
-.env.*
+.env.local
+.env.*.local
 !.env.example
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -146,5 +147,29 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 
+# Output directories
 output/
+
+# IDE-specific local settings (may contain secrets)
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+.idea/*
+!.idea/runConfigurations
+
+# Claude Code local settings (may contain API keys or workspace secrets)
+.claude/settings.local.json
+
+# Generated types and build outputs (Claude Code specific)
 plugins/codex/.generated/
+plugins/qwen/.generated/
+plugins/gemini/.generated/
+
+# Important: Do NOT ignore plugin definitions and configurations
+!plugin.json
+!commands/
+!agents/
+!skills/
+!scripts/
+!plugins/
