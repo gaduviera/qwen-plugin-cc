@@ -1,21 +1,21 @@
 {
-  "name": "openai-codex",
+  "name": "gaduviera-qwen",
   "owner": {
-    "name": "OpenAI"
+    "name": "Gabriel Duarte Viera"
   },
   "metadata": {
-    "description": "Codex plugins to use in Claude Code for delegation and code review.",
-    "version": "1.0.3"
+    "description": "Qwen plugins to use in Claude Code for code review and task delegation via Qwen CLI.",
+    "version": "1.0.0"
   },
   "plugins": [
     {
-      "name": "codex",
-      "description": "Use Codex from Claude Code to review code or delegate tasks.",
-      "version": "1.0.3",
+      "name": "qwen-code",
+      "description": "Use Qwen CLI from Claude Code to review code or delegate tasks.",
+      "version": "1.0.0",
       "author": {
-        "name": "OpenAI"
+        "name": "Gabriel Duarte Viera"
       },
-      "source": "./plugins/codex"
+      "source": "./plugins/qwen"
     }
   ]
 }
