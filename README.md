@@ -4,6 +4,9 @@ Use Qwen CLI from inside Claude Code for code reviews or to delegate tasks to Qw
 
 This plugin adapts the Qwen CLI for seamless integration with Claude Code, letting you leverage Qwen's code analysis and task execution capabilities directly from your Claude Code workflow.
 
+<img width="1774" height="887" alt="image" src="https://github.com/user-attachments/assets/2295eb6a-8ec2-41ce-a46d-787afa33e735" />
+
+
 ## What You Get
 
 - `/qwen:review` for a normal read-only Qwen code review
